@@ -1,0 +1,71 @@
+import express, { Request, Response } from 'express';
+import { getAccessToken } from '../services/authService'
+import { fetchUserInfo } from '../services/userService'
+import { fetchBoards, createItem } from "../services/boardService";
+import config from '../config';
+
+const router = express.Router();
+
+// TODO: split api requests routes into several files
+//  for example, for boards the requests will ve /api/boards/get etc
+
+router.get('/api/get-access-token', async (req: Request, res: Response) => {
+    const code = req.body.code as string;
+    try {
+        const accessToken = await getAccessToken(code, config);
+        res.json({
+            token: accessToken
+        })
+    } catch (error) {
+        console.error('Error fetching access token', error);
+        res.status(500).send('Authentication failed');
+    }
+});
+
+router.get('/api/get-user-info', async (req: Request, res: Response) => {
+    const accessToken = req.body.accessToken as string;
+    try {
+        const user = await fetchUserInfo(accessToken);
+        res.json({
+            'user': user
+        });
+    } catch (error) {
+        console.error('Error fetching data from Monday.com', error);
+        res.status(500).send('Failed to fetch data');
+    }
+});
+
+router.get('/api/get-boards', async (req: Request, res: Response) => {
+    const accessToken = req.body.accessToken as string;
+    try {
+        const boards = await fetchBoards(accessToken);
+        res.json({
+            'boards': boards
+        });
+    } catch (error) {
+        console.error('Error fetching data from Monday.com', error);
+        res.status(500).send('Failed to fetch data');
+    }
+});
+
+router.post('/api/create-item', async (req: Request, res: Response) => {
+    const accessToken = req.body.accessToken as string;
+    const boardId = req.body.boardId as string;
+    const itemName = req.body.itemName as string;
+    try {
+        const item = await createItem(accessToken, boardId, itemName);
+        res.json({
+            success: true,
+            item: item
+        });
+    } catch (error) {
+        console.error('Error creating item:', error);
+        if (error instanceof Error) {
+            res.json({ success: false, error: error.message });
+        } else {
+            res.json({ success: false, error: 'Unknown error' });
+        }
+    }
+});
+
+export default router;
