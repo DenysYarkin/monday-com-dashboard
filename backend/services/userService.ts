@@ -1,12 +1,13 @@
 import axios from 'axios';
 
-interface User {
+interface UserInfo {
     id: string;
     name: string;
     email: string;
 }
 
-const fetchUserInfo = async (accessToken: string): Promise<User> => {
+const fetchUserInfo = async (accessToken: string): Promise<UserInfo> => {
+    console.log('TOKEN:', accessToken);
     const response = await axios.post(
         'https://api.monday.com/v2',
         {
