@@ -1,0 +1,8 @@
+<section class="boards">
+    <app-user-info />
+
+    <app-board
+        *ngFor="let board of boardsList"
+        [board]="board"
+      ></app-board>
+</section>

@@ -3,13 +3,15 @@ import {BoardComponent} from "../board/board.component";
 import {NgForOf} from "@angular/common";
 import {BoardService} from "../services/board.service";
 import {Board} from "../interfaces/board";
+import {UserInfoComponent} from "../user-info/user-info.component";
 
 @Component({
   selector: 'app-boards-list',
   standalone: true,
   imports: [
     BoardComponent,
-    NgForOf
+    NgForOf,
+    UserInfoComponent
   ],
   templateUrl: './boards-list.component.html',
   styleUrl: './boards-list.component.css'
