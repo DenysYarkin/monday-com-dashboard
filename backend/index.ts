@@ -5,20 +5,22 @@ import path from 'path';
 import routes from './routes/routes';
 import config from './config';
 
+import {extractToken} from "./services/authService";
+
 const app = express();
 
-// handling CORS
-// app.use((req, res, next) => {
-//     res.header("Access-Control-Allow-Origin",
-//                "http://localhost:4200");
-//     res.header("Access-Control-Allow-Headers",
-//                "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-// });
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin",
+               "http://localhost:4200");
+    res.header("Access-Control-Allow-Headers",
+               "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    next();
+});
 
 app.use(express.json());
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(extractToken)
 
 app.use('/', routes);
 

@@ -1,0 +1,6 @@
+{
+  "/api" : {
+    "target": "https://auth.monday.com",
+    "secure": false,
+  }
+}

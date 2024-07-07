@@ -4,13 +4,16 @@ import { fetchUserInfo } from '../services/userService'
 import { fetchBoards, createItem } from "../services/boardService";
 import config from '../config';
 
+import { AuthenticatedRequest} from "../services/authService";
+
 const router = express.Router();
 
 // TODO: split api requests routes into several files
 //  for example, for boards the requests will ve /api/boards/get etc
 
 router.get('/api/get-access-token', async (req: Request, res: Response) => {
-    const code = req.body.code as string;
+    const code = req.query.code as string;
+    console.log('CODE:', code);
     try {
         const accessToken = await getAccessToken(code, config);
         res.json({
@@ -22,8 +25,8 @@ router.get('/api/get-access-token', async (req: Request, res: Response) => {
     }
 });
 
-router.get('/api/get-user-info', async (req: Request, res: Response) => {
-    const accessToken = req.body.accessToken as string;
+router.get('/api/get-user-info', async (req: AuthenticatedRequest, res: Response) => {
+    const accessToken = req.token as string;
     try {
         const user = await fetchUserInfo(accessToken);
         res.json({
@@ -35,8 +38,8 @@ router.get('/api/get-user-info', async (req: Request, res: Response) => {
     }
 });
 
-router.get('/api/get-boards', async (req: Request, res: Response) => {
-    const accessToken = req.body.accessToken as string;
+router.get('/api/get-boards', async (req: AuthenticatedRequest, res: Response) => {
+    const accessToken = req.token as string;
     try {
         const boards = await fetchBoards(accessToken);
         res.json({
@@ -48,8 +51,8 @@ router.get('/api/get-boards', async (req: Request, res: Response) => {
     }
 });
 
-router.post('/api/create-item', async (req: Request, res: Response) => {
-    const accessToken = req.body.accessToken as string;
+router.post('/api/create-item', async (req:AuthenticatedRequest, res: Response) => {
+    const accessToken = req.token as string;
     const boardId = req.body.boardId as string;
     const itemName = req.body.itemName as string;
     try {
