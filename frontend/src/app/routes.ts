@@ -1,8 +1,8 @@
-import {HomeComponent} from "./home/home.component";
-import {BoardsListComponent} from "./boards-list/boards-list.component";
+import {HomeComponent} from "./components/home/home.component";
+import {BoardsListComponent} from "./components/boards-list/boards-list.component";
 import {Routes} from "@angular/router";
 import {environment} from '../environments/environment';
-import {OauthCallbackComponent} from "./oauth-callback/oauth-callback.component";
+import {OauthCallbackComponent} from "./components/oauth-callback/oauth-callback.component";
 
 const routeConfig: Routes = [
   {

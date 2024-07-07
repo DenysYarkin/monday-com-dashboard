@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import {HomeComponent} from './home/home.component';
-import {BoardsListComponent} from "./boards-list/boards-list.component";
+import {HomeComponent} from './components/home/home.component';
+import {BoardsListComponent} from "./components/boards-list/boards-list.component";
 
 import {RouterModule} from '@angular/router';
 

@@ -1,8 +1,8 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {BoardComponent} from "../board/board.component";
+import {BoardComponent} from "../../board/board.component";
 import {NgForOf} from "@angular/common";
-import {BoardService} from "../services/board.service";
-import {Board} from "../interfaces/board";
+import {BoardService} from "../../services/board.service";
+import {Board} from "../../interfaces/board";
 import {UserInfoComponent} from "../user-info/user-info.component";
 
 @Component({
