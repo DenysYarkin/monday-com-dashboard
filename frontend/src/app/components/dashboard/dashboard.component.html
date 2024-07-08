@@ -1,9 +1,18 @@
 <section class="dashboard">
-    <app-user-info />
-    <hr>
-
-    <app-boards-list />
-    <hr>
-
-    <app-documents-list />
+    <div class="user-info">
+        <h2>User info</h2>
+        <app-user-info></app-user-info>
+        <hr>
+    </div>
+    <div class="content">
+        <div class="boards-list">
+            <h2>Boards</h2>
+            <app-boards-list></app-boards-list>
+        </div>
+        <div class="vertical-delimiter"></div>
+        <div class="documents-list">
+            <h2>Documents</h2>
+            <app-documents-list></app-documents-list>
+        </div>
+    </div>
 </section>

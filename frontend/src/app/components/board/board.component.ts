@@ -20,8 +20,9 @@ export class BoardComponent {
   openDialog(): void {
     // TODO: move style
     const dialogRef = this.dialog.open(DialogWindowComponent, {
-      width: '250px',
-      data: { itemName: '' }
+      width: '40%',
+      height: '250px',
+      data: { itemName: '' },
     });
 
     dialogRef.afterClosed().subscribe(result => {

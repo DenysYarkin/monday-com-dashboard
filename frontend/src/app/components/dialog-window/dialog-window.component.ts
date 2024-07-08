@@ -4,7 +4,8 @@ import {
   MAT_DIALOG_DATA,
   MatDialogContent,
   MatDialogActions,
-  MatDialogTitle
+  MatDialogTitle,
+  MatDialogModule
 } from '@angular/material/dialog';
 import {MatFormField} from "@angular/material/form-field";
 import {FormsModule} from "@angular/forms";
