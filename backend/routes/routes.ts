@@ -1,11 +1,11 @@
 import express, { Request, Response } from 'express';
 import { getAccessToken } from '../services/authService'
 import { fetchUserInfo } from '../services/userService'
-import { fetchBoards, createItem } from "../services/boardService";
-import { fetchDocuments } from "../services/documentsService";
-import config from '../config';
+import { fetchBoards, createItem } from '../services/boardService';
+import { fetchDocuments } from '../services/documentsService';
+import config from '../config/config';
 
-import { AuthenticatedRequest} from "../services/authService";
+import { AuthenticatedRequest} from '../services/authService';
 
 const router = express.Router();
 
@@ -14,7 +14,6 @@ const router = express.Router();
 
 router.get('/api/get-access-token', async (req: Request, res: Response) => {
     const code = req.query.code as string;
-    console.log('CODE:', code);
     try {
         const accessToken = await getAccessToken(code, config);
         res.json({
@@ -31,7 +30,6 @@ router.get('/api/get-user-info', async (req: AuthenticatedRequest, res: Response
     try {
         const user = await fetchUserInfo(accessToken);
         res.json({
-            // TODO: rename to userInfo for consistency
             'user': user
         });
     } catch (error) {

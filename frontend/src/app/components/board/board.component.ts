@@ -36,7 +36,7 @@ export class BoardComponent {
     const accessToken = localStorage.getItem('accessToken') || '';
     this.boardService.createItem(this.board.id.toString(), itemName, accessToken)
       .then(response => {
-        console.log(response ? 'Item added successfully' : 'Error while adding item');
+        alert(response ? 'Item added successfully' : 'Error while adding a new item')
       });
   }
 }

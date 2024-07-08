@@ -23,7 +23,6 @@ const fetchDocuments = async (accessToken: string): Promise<Document[]> => {
       },
     }
   );
-  console.log(response.data.data);
   return response.data.data.docs
 };
 

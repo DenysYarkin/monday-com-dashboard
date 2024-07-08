@@ -7,7 +7,6 @@ interface UserInfo {
 }
 
 const fetchUserInfo = async (accessToken: string): Promise<UserInfo> => {
-    console.log('TOKEN:', accessToken);
     const response = await axios.post(
         'https://api.monday.com/v2',
         {

@@ -1,7 +1,0 @@
-// TODO: delete file
-{
-  "/api" : {
-    "target": "https://auth.monday.com",
-    "secure": false,
-  }
-}

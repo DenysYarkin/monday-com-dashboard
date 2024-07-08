@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, {AxiosResponse} from 'axios';
 
 interface BoardObject {
   id: string,
@@ -35,9 +35,8 @@ const fetchBoards = async (accessToken: string): Promise<Board[]> => {
         'Content-Type': 'application/json',
       },
     }
-  );
-  const boards = response.data.data.boards.filter((board: Board) => board.type == 'board')
-  return boards
+  )
+  return response.data.data.boards.filter((board: Board) => board.type == 'board')
 };
 
 const createItem = async (accessToken: string, boardId: string, itemName: string): Promise<Item> => {

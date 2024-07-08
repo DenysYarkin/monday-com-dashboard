@@ -20,8 +20,6 @@ export class OauthCallbackComponent implements OnInit {
     // TODO: add check for the case when we already have a token
     this.activatedRoute.queryParams.subscribe(params => {
       const code = params['code'];
-      // TODO: remove logs
-      console.log('code:', code);
       this.authService.getToken(code)
     });
     this.router.navigate(['/dashboard']);  }

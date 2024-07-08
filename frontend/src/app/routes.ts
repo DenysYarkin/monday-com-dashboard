@@ -15,12 +15,9 @@ const routeConfig: Routes = [
     title: 'Dashboard',
   },
   {
+    // TODO:
     path: 'login',
     redirectTo: 'https://auth.monday.com/oauth2/authorize?'// +
-      // `client_id=${environment.clientId}&` +
-      //
-      // // TODO: replace
-      // `redirect_uri=${"http://localhost:4200/callback"}`,
   },
   {
     path: 'callback',

@@ -1,19 +1,18 @@
 import express from 'express';
 import path from 'path';
 
-// TODO: find out why i need to specify file here
 import routes from './routes/routes';
-import config from './config';
+import config from './config/config';
 
-import {extractToken} from "./services/authService";
+import {extractToken} from './services/authService';
 
 const app = express();
 
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin",
-               "http://localhost:4200");
-    res.header("Access-Control-Allow-Headers",
-               "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.header('Access-Control-Allow-Origin',
+                config.frontendUri);
+    res.header('Access-Control-Allow-Headers',
+               'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     next();
 });
 
