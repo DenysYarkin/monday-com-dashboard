@@ -1,8 +1,7 @@
 import {HomeComponent} from "./components/home/home.component";
-import {BoardsListComponent} from "./components/boards-list/boards-list.component";
 import {Routes} from "@angular/router";
-import {environment} from '../environments/environment';
 import {OauthCallbackComponent} from "./components/oauth-callback/oauth-callback.component";
+import {DashboardComponent} from "./components/dashboard/dashboard.component";
 
 const routeConfig: Routes = [
   {
@@ -11,9 +10,9 @@ const routeConfig: Routes = [
     title: 'Home page',
   },
   {
-    path: 'boards',
-    component: BoardsListComponent,
-    title: 'Home details',
+    path: 'dashboard',
+    component: DashboardComponent,
+    title: 'Dashboard',
   },
   {
     path: 'login',

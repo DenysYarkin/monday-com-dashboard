@@ -1,12 +1,6 @@
 <section class="boards">
-    <app-user-info />
-    <hr>
-
     <app-board
         *ngFor="let board of boardsList"
         [board]="board"
       ></app-board>
-    <hr>
-
-    <app-documents-list />
 </section>

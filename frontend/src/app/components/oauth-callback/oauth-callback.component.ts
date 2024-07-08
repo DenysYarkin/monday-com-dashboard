@@ -24,5 +24,5 @@ export class OauthCallbackComponent implements OnInit {
       console.log('code:', code);
       this.authService.getToken(code)
     });
-    this.router.navigate(['/boards']);  }
+    this.router.navigate(['/dashboard']);  }
 }
