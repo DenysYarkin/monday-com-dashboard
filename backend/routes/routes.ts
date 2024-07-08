@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import { getAccessToken } from '../services/authService'
 import { fetchUserInfo } from '../services/userService'
 import { fetchBoards, createItem } from "../services/boardService";
+import { fetchDocuments } from "../services/documentsService";
 import config from '../config';
 
 import { AuthenticatedRequest} from "../services/authService";
@@ -30,6 +31,7 @@ router.get('/api/get-user-info', async (req: AuthenticatedRequest, res: Response
     try {
         const user = await fetchUserInfo(accessToken);
         res.json({
+            // TODO: rename to userInfo for consistency
             'user': user
         });
     } catch (error) {
@@ -44,6 +46,19 @@ router.get('/api/get-boards', async (req: AuthenticatedRequest, res: Response) =
         const boards = await fetchBoards(accessToken);
         res.json({
             'boards': boards
+        });
+    } catch (error) {
+        console.error('Error fetching data from Monday.com', error);
+        res.status(500).send('Failed to fetch data');
+    }
+});
+
+router.get('/api/get-documents', async (req: AuthenticatedRequest, res: Response) => {
+    const accessToken = req.token as string;
+    try {
+        const documents = await fetchDocuments(accessToken);
+        res.json({
+            'documents': documents
         });
     } catch (error) {
         console.error('Error fetching data from Monday.com', error);

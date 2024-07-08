@@ -1,9 +1,10 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {BoardComponent} from "../../board/board.component";
+import {BoardComponent} from "../board/board.component";
 import {NgForOf} from "@angular/common";
 import {BoardService} from "../../services/board.service";
 import {Board} from "../../interfaces/board";
 import {UserInfoComponent} from "../user-info/user-info.component";
+import {DocumentsListComponent} from "../documents-list/documents-list.component";
 
 @Component({
   selector: 'app-boards-list',
@@ -11,7 +12,8 @@ import {UserInfoComponent} from "../user-info/user-info.component";
   imports: [
     BoardComponent,
     NgForOf,
-    UserInfoComponent
+    UserInfoComponent,
+    DocumentsListComponent
   ],
   templateUrl: './boards-list.component.html',
   styleUrl: './boards-list.component.css'
