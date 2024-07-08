@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   tokenService: TokenService = inject(TokenService);
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     const optionalToken = this.tokenService.getAccessToken();

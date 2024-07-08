@@ -19,12 +19,21 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class DashboardComponent implements OnInit {
 
   tokenService: TokenService = inject(TokenService);
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     const optionalToken = this.tokenService.getAccessToken();
     if (optionalToken == undefined) {
       this.router.navigate(['/login']);
     }
+  }
+
+  onLogoutClicked() {
+    this.tokenService.clearToken();
+    this.router.navigate(['/']);
+  }
+
+  onHomeClicked() {
+    this.router.navigate(['/']);
   }
 }

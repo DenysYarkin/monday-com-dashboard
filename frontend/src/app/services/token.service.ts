@@ -11,6 +11,15 @@ export class TokenService {
     localStorage.setItem('accessToken', token);
   }
 
+  clearToken() {
+    try {
+      localStorage.removeItem('accessToken');
+    }
+    catch (error) {
+      console.log('accessToken is not present');
+    }
+  }
+
   getAccessToken(): string | undefined {
     const token: string | null = localStorage.getItem('accessToken');
     if (token) {

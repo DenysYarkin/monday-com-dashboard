@@ -1,4 +1,7 @@
 <h1>Home</h1>
 <nav>
-    <a (click)="onLoginClicked()">Login</a>
+    <a *ngIf="!isLoggedIn" (click)="onLoginClicked()">Login</a>
+    <a *ngIf="isLoggedIn" (click)="onLogoutClicked()">Logout</a>
+
+    <a class="dashboard-button" *ngIf="isLoggedIn" href="/dashboard">Dashboard</a>
 </nav>

@@ -9,9 +9,6 @@ import { AuthenticatedRequest} from '../services/authService';
 
 const router = express.Router();
 
-// TODO: split api requests routes into several files
-//  for example, for boards the requests will ve /api/boards/get etc
-
 router.get('/api/get-access-token', async (req: Request, res: Response) => {
     const code = req.query.code as string;
     try {

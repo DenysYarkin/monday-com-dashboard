@@ -17,7 +17,6 @@ interface Item {
   name: string;
 }
 
-// TODO: must return option
 const fetchBoards = async (accessToken: string): Promise<Board[]> => {
   const response = await axios.post(
     'https://api.monday.com/v2',

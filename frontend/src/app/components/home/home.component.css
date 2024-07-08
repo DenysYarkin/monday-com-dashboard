@@ -1,0 +1,15 @@
+nav {
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+a {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.dashboard-button {
+    margin-left: 10px;
+}
