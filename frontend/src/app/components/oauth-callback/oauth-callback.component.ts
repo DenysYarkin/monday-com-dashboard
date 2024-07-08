@@ -1,7 +1,7 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
-import { RouterModule, Routes } from '@angular/router';
+import {TokenService} from "../../services/token.service";
 
 @Component({
   selector: 'app-oauth-callback',
@@ -13,14 +13,24 @@ import { RouterModule, Routes } from '@angular/router';
 export class OauthCallbackComponent implements OnInit {
 
   authService: AuthService = inject(AuthService);
+  tokenService: TokenService = inject(TokenService);
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
 
-  ngOnInit() {
-    // TODO: add check for the case when we already have a token
+  async ngOnInit() {
+    const optionalToken = this.tokenService.getAccessToken();
+    if (optionalToken !== undefined) {
+      this.router.navigate(['/dashboard']);
+      return;
+    }
     this.activatedRoute.queryParams.subscribe(params => {
       const code = params['code'];
-      this.authService.getToken(code)
+      this.handleToken(code);
     });
-    this.router.navigate(['/dashboard']);  }
+  }
+
+  private async handleToken(code: string) {
+    const result = await this.authService.getToken(code);
+    this.router.navigate(['/dashboard']);
+  }
 }

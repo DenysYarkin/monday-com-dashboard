@@ -46,17 +46,6 @@
                 }
               ],
               "outputHashing": "all"
-            },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.development.ts"
-                }
-              ]
             }
           },
           "defaultConfiguration": "production"
@@ -66,12 +55,9 @@
           "configurations": {
             "production": {
               "buildTarget": "mondaycom-fetcher-angular:build:production"
-            },
-            "development": {
-              "buildTarget": "mondaycom-fetcher-angular:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "production"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"

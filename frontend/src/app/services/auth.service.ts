@@ -1,7 +1,9 @@
 import {inject, Injectable} from '@angular/core';
-import {AuthConfig, OAuthErrorEvent, OAuthService} from "angular-oauth2-oidc";
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {firstValueFrom} from "rxjs";
+import { OAuthErrorEvent, OAuthService} from "angular-oauth2-oidc";
+import { HttpClient } from "@angular/common/http";
+import {environment} from "../../environments/environment";
+import {TokenService} from "./token.service";
+import axios from "axios";
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,7 @@ export class AuthService {
 
   private oAuthService = inject(OAuthService)
   private http: HttpClient = inject(HttpClient);
+  private tokenService = inject(TokenService);
 
   constructor() {
     this.oAuthService.setupAutomaticSilentRefresh();
@@ -24,21 +27,19 @@ export class AuthService {
   }
 
   async getToken(authCode: string): Promise<boolean> {
-    const tokenEndpoint = `http://localhost:3000/api/get-access-token`;
+    const tokenEndpoint = `${environment.backendApiUri}/api/get-access-token`;
 
     const params = new URLSearchParams();
     params.append('code', authCode);
     let result = true;
-    fetch(tokenEndpoint + '?' + params.toString())
-        .then(response => response.json())
-        .then(data => {
-          const accessToken = data.token;
-          localStorage.setItem('accessToken', accessToken);
-        })
-        .catch(error => {
-          result = false;
-          console.error('Error:', error)
-        });
-    return result;
+    const response = await axios.get(tokenEndpoint + '?' + params.toString())
+      .then(response => {
+        this.tokenService.saveToken(response.data.token);
+      })
+      .catch(error => {
+        result = false;
+        console.error('Error while fetching token:', error)
+      })
+    return false;
   }
 }

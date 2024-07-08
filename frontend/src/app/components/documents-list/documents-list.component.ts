@@ -1,9 +1,9 @@
 import {Component, inject} from '@angular/core';
-import {BoardComponent} from "../board/board.component";
 import {DocumentComponent} from "../document/document.component";
 import {DocumentService} from "../../services/document.service";
 import {Document} from "../../interfaces/document";
 import {NgForOf} from "@angular/common";
+import {TokenService} from "../../services/token.service";
 
 @Component({
   selector: 'app-documents-list',
@@ -17,18 +17,25 @@ import {NgForOf} from "@angular/common";
 })
 export class DocumentsListComponent {
   documentsService: DocumentService = inject(DocumentService);
+  tokenService = inject(TokenService);
 
   public documentsList: Document[] = [];
 
   async ngOnInit() {
-    const accessToken = localStorage.getItem('accessToken') || '';
-    this.documentsList = await this.documentsService.getAllDocuments(accessToken);
+    const optionalToken: string | undefined = this.tokenService.getAccessToken();
+    let accessToken: string = '';
+    if (optionalToken) {
+      accessToken = optionalToken.toString();
+    }
+    else {
+      console.log('Error: can\'t fetch documents: unauthorized')
+      return;
+    }
+    try {
+      this.documentsList = await this.documentsService.getAllDocuments(accessToken);
+    }
+    catch (error) {
+      console.log("Failed to fetch documents:", error);
+    }
   }
-
-  // TODO: probably delete constructor
-  constructor() {
-    // TODO: probably handle case with no token?
-  }
-
-  protected readonly document = document;
 }

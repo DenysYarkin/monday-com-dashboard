@@ -2,12 +2,13 @@ import {HomeComponent} from "./components/home/home.component";
 import {Routes} from "@angular/router";
 import {OauthCallbackComponent} from "./components/oauth-callback/oauth-callback.component";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
+import {LoginComponent} from "./components/login/login.component";
 
 const routeConfig: Routes = [
   {
     path: '',
     component: HomeComponent,
-    title: 'Home page',
+    title: 'Home',
   },
   {
     path: 'dashboard',
@@ -15,9 +16,9 @@ const routeConfig: Routes = [
     title: 'Dashboard',
   },
   {
-    // TODO:
     path: 'login',
-    redirectTo: 'https://auth.monday.com/oauth2/authorize?'// +
+    component: LoginComponent,
+    title: 'Login'
   },
   {
     path: 'callback',
