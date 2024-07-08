@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Add Item</h2>
+<mat-dialog-content>
+    <mat-form-field>
+        Item Name
+        <input matInput [(ngModel)]="data.itemName">
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button (click)="confirm()">Add</button>
+</mat-dialog-actions>

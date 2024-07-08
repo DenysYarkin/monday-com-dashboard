@@ -25,13 +25,9 @@ export class BoardsListComponent implements OnInit {
   public boardsList: Board[] = [];
 
   async ngOnInit() {
+    // TODO: create accessTokenService
     const accessToken = localStorage.getItem('accessToken') || '';
     this.boardsList = await this.boardService.getAllBoards(accessToken);
   }
-
-  // TODO: probably delete constructor
-  constructor() {
-    // TODO: probably handle case with no token?
-  }
-
+  // TODO: probably handle case with no token?
 }

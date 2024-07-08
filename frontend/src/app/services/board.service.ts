@@ -20,4 +20,21 @@ export class BoardService {
     )
     return response.data.boards
   }
+
+  async createItem(boardId: string, itemName: string, accessToken: string): Promise<boolean> {
+    const response = await axios.post(
+      'http://localhost:3000/api/create-item',
+      {
+        boardId: boardId,
+        itemName: itemName
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+    return true;
+  }
 }
