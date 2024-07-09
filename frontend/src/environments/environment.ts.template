@@ -1,0 +1,8 @@
+export const environment = {
+  clientId: '',
+  oAuthUrlBase: 'https://auth.monday.com/oauth2/authorize?',
+  oAuthRedirectUri: 'http://localhost:4200/callback',
+
+  // Backend API URI
+  backendApiUri: 'http://localhost:3000'
+};
