@@ -1,16 +1,16 @@
 # Project structure
 - `/backend` directory contains backend api written with Express framework
 - `/frontend` directory contains frontend part written on Angular
- 
-# Configuration
+
+# Configuration and starting
 ## Backend
 - Rename `.env.template` to the `.env` and fill missing fields
 - Install all necessary packages
-- Starting entry point - `/backend/index.ts`
+- From `/backend` directory run `npx ts-node index.ts`
 ## Frontend
-- Fill `/frontend/src/environments/environment.ts`
+- Rename `/frontend/src/environments/environment.ts.template` to `environment.ts` and fill missing fields
 - Install all necessary packages
-- Start as Angular project
+- Start as Angular project using `npm start`
 
 # TODO
 - More robust way for handling errors on both backend and frontend
